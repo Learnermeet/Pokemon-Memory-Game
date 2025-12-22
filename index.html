@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pokemon Memory Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<h1>🧠 Pokemon Memory Game</h1>
+
+<div class="controls">
+  <label for="boardSize">Select Board Size</label>
+  <select id="boardSize">
+    <option value="">-- Choose Size --</option>
+    <option value="2">2 x 2</option>
+    <option value="4">4 x 4</option>
+    <option value="6">6 x 6</option>
+    <option value="8">8 x 8</option>
+  </select>
+
+  <button id="startBtn" disabled>Start Game</button>
+  <button id="resetBtn" disabled>Reset</button>
+  <button id="themeToggle">🌙 Dark Mode</button>
+</div>
+
+<div id="stats">
+  Moves: <b id="moves">0</b>
+</div>
+
+<div id="gameBoard"></div>
+
+<div id="popup" style="display:none;">
+  <div class="popup-box">
+    <h2>🎉 You Won!</h2>
+    <button id="playAgain">Play Again</button>
+  </div>
+</div>
+
+<canvas id="confetti"></canvas>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+  background: #f2f2f2;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+.controls {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 250px;
+  margin: auto;
+}
+
+.controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+#stats {
+  margin: 10px 0;
+}
+
+#gameBoard {
+  display: grid;
+  gap: 10px;
+  justify-content: center;
+  margin: auto;
+}
+
+.card {
+  width: 70px;
+  height: 70px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.4s;
+  cursor: pointer;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.front, .back {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+}
+
+.front {
+  background: white;
+  font-size: 30px;
+}
+
+.back {
+  background: #ffcb05;
+  transform: rotateY(180deg);
+}
+
+.back img {
+  width: 50px;
+  height: 50px;
+}
+
+#popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.popup-box {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+#confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9;
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: 55px;
+    height: 55px;
+  }
+
+  .back img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* ---------- DARK MODE ---------- */
+
+body.dark {
+  background: #0d1117;
+  color: #e6edf3;
+}
+
+body.dark #startBtn {
+  background-color: #238636;
+  border-color: #2ea043;
+}
+
+body.dark #startBtn:disabled {
+  background-color: #1f2937;  
+  color: #9ca3af;           
+  border-color: #374151;
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+body.dark #startBtn:hover {
+  background-color: #2ea043;
+}
+
+
+body.dark #gameBoard {
+  background: rgba(30, 30, 30, 0.9);
+}
+
+body.dark .card .front {
+  background: #161b22;
+  color: #fff;
+}
+
+body.dark .popup-box {
+  background: #161b22;
+  color: #fff;
+}
+
+body.dark .controls select,
+body.dark .controls button {
+  background: #21262d;
+  color: #e6edf3;
+  border: 1px solid #30363d;
+}
