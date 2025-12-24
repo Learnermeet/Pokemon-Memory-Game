@@ -19,6 +19,12 @@ const pokemonBase =
 // Total number of Pokemon sprites available 
 const MAX_POKEMON = 898;
 
+// Convert Pokémon ID to name using PokéAPI
+async function idToName(id) {
+  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+  const data = await res.json();
+  return data.name.charAt(0).toUpperCase() + data.name.slice(1);
+}
 
 boardSelect.addEventListener("change", () => {
   startBtn.disabled = boardSelect.value === "";
@@ -28,7 +34,7 @@ startBtn.addEventListener("click", startGame);
 resetBtn.addEventListener("click", resetGame);
 playAgainBtn.addEventListener("click", resetGame);
 
-function startGame() {
+async function startGame() {
   const size = Number(boardSelect.value);
   if (!size) return;
 
@@ -46,7 +52,6 @@ function startGame() {
   // }
 
 // random Pokémon from entire Pokedex
-  const cards = [];
   const usedIds = new Set();
 
   // Pick unique random Pokemon IDs
@@ -55,11 +60,14 @@ function startGame() {
     usedIds.add(randomId);
   }
 
-  // Create pairs
-  usedIds.forEach(id => {
-    cards.push(createCard(id));
-    cards.push(createCard(id));
-  });
+// Create card promises in parallel
+  const cardPromises = [];
+  for (const id of usedIds) {
+    cardPromises.push(createCard(id));
+    cardPromises.push(createCard(id));
+  }
+
+  const cards = await Promise.all(cardPromises); // wait for all cards to be created
 
   shuffle(cards);
   cards.forEach(card => gameBoard.appendChild(card));
@@ -88,15 +96,19 @@ function resetGame() {
 
 /* ---------- CARD ---------- */
 
-function createCard(id) {
+async function createCard(id) {
   const card = document.createElement("div");
   card.className = "card";
   card.dataset.id = id;
 
+  // Capitalize first letter of name
+  const pokemonName = await idToName(id);
+
   card.innerHTML = `
     <div class="front">❓</div>
     <div class="back">
-      <img src="${pokemonBase}${id}.png">
+      <img src="${pokemonBase}${id}.png" alt="${pokemonName}">
+      <span class="pokemon-name">${pokemonName}</span>
     </div>
   `;
 

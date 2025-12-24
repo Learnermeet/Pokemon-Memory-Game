@@ -70,11 +70,38 @@ h1 {
 .back {
   background: #ffcb05;
   transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2px;
+  overflow: hidden;
 }
 
+/* Pokémon image takes 75% of card */
 .back img {
-  width: 50px;
-  height: 50px;
+  flex: 3;
+  width: auto;
+  max-height: 75%;
+  object-fit: contain;
+}
+
+/* Pokémon name takes 25% of card, dynamic font scaling */
+.pokemon-name {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: bold;
+  font-size: clamp(8px, 1.2vw, 12px);
+  margin: 0;
+  width: 100%;
+  line-height: 1.1;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  padding: 0 2px;
 }
 
 #popup {
@@ -107,8 +134,11 @@ h1 {
   }
 
   .back img {
-    width: 40px;
-    height: 40px;
+    max-height: 75%;
+  }
+
+  .pokemon-name {
+    font-size: clamp(6px, 1.5vw, 10px);
   }
 }
 
@@ -136,7 +166,6 @@ body.dark #startBtn:hover {
   background-color: #2ea043;
 }
 
-
 body.dark #gameBoard {
   background: rgba(30, 30, 30, 0.9);
 }
@@ -156,4 +185,8 @@ body.dark .controls button {
   background: #21262d;
   color: #e6edf3;
   border: 1px solid #30363d;
+}
+
+body.dark .pokemon-name {
+  color: #fb0909;
 }
