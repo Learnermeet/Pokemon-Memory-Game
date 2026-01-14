@@ -69,3 +69,5 @@ Contributions are welcome! Feel free to:
 * Add more Pokémon cards
 * Improve UI/UX design
 * Add sound effects or animations
+
+Made with ❤️ using Python and Pygame
