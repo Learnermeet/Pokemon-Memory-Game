@@ -70,4 +70,4 @@ Contributions are welcome! Feel free to:
 * Improve UI/UX design
 * Add sound effects or animations
 
-Made with ❤️ using Python and Pygame
+# Made with ❤️ by Learnermeet
